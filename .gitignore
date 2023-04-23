@@ -18,6 +18,7 @@ local.properties
 .loadpath
 .recommenders
 .vscode/launch.json
+.vscode/
 
 ######################
 # OS generated files #
@@ -38,6 +39,7 @@ porthos/target/
 ui/target/
 svcomp/target/
 zombmc/target/
+build/
 
 ##########
 # Boogie #

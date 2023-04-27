@@ -4,18 +4,19 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Update Ubuntu Software repository
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y software-properties-common && \
-    apt-get install -y git && \
-    apt-get install -y graphviz && \
-    apt-get install -y sudo && \
-    apt-get install -y wget && \
-    apt-get install -y maven && \
-    apt-get install -y cmake && \
-    apt-get install -y autoconf && \
-    apt-get install -y automake && \
-    apt-get install -y graphviz
+RUN apt-get -qq update && \
+    apt-get -qq upgrade -y && \
+    apt-get -qq install -y software-properties-common && \
+    apt-get -qq install -y git && \
+    apt-get -qq install -y graphviz && \
+    apt-get -qq install -y sudo && \
+    apt-get -qq install -y wget && \
+    apt-get -qq install -y maven && \
+    apt-get -qq install -y cmake && \
+    apt-get -qq install -y g++ && \
+    apt-get -qq install -y autoconf && \
+    apt-get -qq install -y automake && \
+    apt-get -qq install -y graphviz
 
 # Install SMACK
 RUN cd home && \
@@ -25,7 +26,7 @@ RUN cd home && \
 
 # Install Dat3M
 RUN cd home && \
-    git clone --branch development https://github.com/hernanponcedeleon/Dat3M.git && \
+    git clone https://github.com/NicoPietzsch/Dat3M.git && \
     cd Dat3M && \
     chmod 755 Dartagnan-SVCOMP.sh && \
     mvn clean install -DskipTests

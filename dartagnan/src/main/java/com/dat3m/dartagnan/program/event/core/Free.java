@@ -1,17 +1,16 @@
 package com.dat3m.dartagnan.program.event.core;
 
-import com.dat3m.dartagnan.expression.ExprInterface;
 import com.dat3m.dartagnan.expression.IExpr;
+import com.dat3m.dartagnan.expression.IValue;
 
 public class Free extends Store{
 
-    public Free(IExpr address, ExprInterface value, String mo) {
-        super(address, value, mo);
+    public Free(IExpr address) {
+        super(address, IValue.ZERO, "");
     }
     
     protected Free(Free other){
         super(other);
-        this.value = other.value;
     }
 
     @Override

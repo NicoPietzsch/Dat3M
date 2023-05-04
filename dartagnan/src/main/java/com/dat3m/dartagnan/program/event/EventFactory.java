@@ -77,8 +77,8 @@ public class EventFactory {
         return new Store(address, value, mo);
     }
 
-    public static Free newFree(IExpr address, ExprInterface value, String mo) {
-        return new Free(address, value, mo);
+    public static Free newFree(IExpr address) {
+        return new Free(address);
     }
 
     public static Fence newFence(String name) {

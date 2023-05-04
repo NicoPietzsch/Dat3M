@@ -14,7 +14,8 @@ public enum Property implements OptionInterface {
     PROGRAM_SPEC,        // Litmus queries OR assertion safety in C-code
     LIVENESS,            // Liveness property
     CAT_SPEC,            // CAT-spec defined via flagged axioms in .cat file (~bug specification)
-    DATARACEFREEDOM;     // Special option for data-race detection in SVCOMP only
+    DATARACEFREEDOM,     // Special option for data-race detection in SVCOMP only
+    MEMORY_SPEC;         // Use-after-free and the like
 
 
     public enum Type {
@@ -35,6 +36,8 @@ public enum Property implements OptionInterface {
                 return "Liveness";
             case CAT_SPEC:
                 return "CAT specification";
+            case MEMORY_SPEC:
+                return "Memory safety";
             default:
                 throw new UnsupportedOperationException("Unrecognized property: " + this);
         }

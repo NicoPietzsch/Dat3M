@@ -127,6 +127,9 @@ public class PropertyEncoder implements Encoder {
         if (properties.contains(PROGRAM_SPEC)) {
             trackableViolationEncodings.add(encodeProgramSpecification());
         }
+        if (properties.contains(MEMORY_SPEC)) {
+            trackableViolationEncodings.add(encodeMemorySafety());
+        }
 
         final BooleanFormulaManager bmgr = context.getBooleanFormulaManager();
         // Weak tracking: "TrackingVar => TrackingEnc", strong tracking: "TrackingVar <=> TrackingEnc"
@@ -485,5 +488,21 @@ public class PropertyEncoder implements Encoder {
 
             return spinIterations;
         }
+    }
+
+    // ======================================================================
+    // ======================================================================
+    // ============================= Memory Safety ==========================
+    // ======================================================================
+    // ======================================================================
+
+    private TrackableFormula encodeMemorySafety() {
+        logger.info("Encoding Memory Saftey Specification");
+
+        final Program program = PropertyEncoder.this.program;
+        final EncodingContext context = PropertyEncoder.this.context;
+        final BooleanFormulaManager bmgr = context.getBooleanFormulaManager();
+
+        return new TrackableFormula(null, null);
     }
 }

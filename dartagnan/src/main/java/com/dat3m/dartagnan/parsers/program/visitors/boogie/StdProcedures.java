@@ -67,7 +67,7 @@ public class StdProcedures {
             return;
         }
         if (name.startsWith("free")) {
-            // TODO: Implement this
+            free(visitor, ctx);
             return;
         }
         if (name.startsWith("memcpy") | name.startsWith("$memcpy")) {
@@ -116,6 +116,14 @@ public class StdProcedures {
         final Register reg = visitor.programBuilder.getRegister(visitor.threadCount, ptrName);
 
         visitor.programBuilder.addChild(visitor.threadCount, EventFactory.Std.newMalloc(reg, sizeExpr));
+    }
+
+    private static void free(VisitorBoogie visitor, Call_cmdContext ctx) {
+        final IExpr address = ((IExpr) ctx.call_params().exprs().expr(0).accept(visitor));
+        final String ptrName = visitor.currentScope.getID() + ":" + ctx.call_params().Ident(0).getText();
+        final Register reg = visitor.programBuilder.getRegister(visitor.threadCount, ptrName);
+
+        visitor.programBuilder.addChild(visitor.threadCount, EventFactory.newFree(address, reg, ptrName));
     }
 
     private static void __assert(VisitorBoogie visitor, Call_cmdContext ctx) {

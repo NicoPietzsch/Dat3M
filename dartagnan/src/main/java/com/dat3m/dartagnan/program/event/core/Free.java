@@ -15,7 +15,7 @@ public class Free extends Store{
 
     @Override
     public String toString() {
-        return "free(*)" + address + ")";
+        return "free(*" + address + ")";
     }
 
     @Override

@@ -23,6 +23,8 @@ int main()
 
     free(shared);
 
+    shared = NULL;
+
     /*for (int i = 0; i < NTHREADS; i++)
         pthread_join(t[i], 0);*/
 

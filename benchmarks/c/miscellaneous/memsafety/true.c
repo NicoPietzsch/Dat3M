@@ -15,6 +15,7 @@ void *thread_n(void* arg)
 int main()
 {
     shared = malloc(sizeof(int));
+    *shared = 0;
     pthread_t t[NTHREADS];
 
     /*for (int i = 0; i < NTHREADS; i++)

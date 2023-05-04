@@ -502,7 +502,15 @@ public class PropertyEncoder implements Encoder {
         final Program program = PropertyEncoder.this.program;
         final EncodingContext context = PropertyEncoder.this.context;
         final BooleanFormulaManager bmgr = context.getBooleanFormulaManager();
+        Relation co = memoryModel.getRelation(RelationNameRepository.CO);
+        List<Free> list = program.getEvents(Free.class);
+        BooleanFormula bnc = bmgr.makeTrue();
+        for(Free f : list) {
+            bnc = bmgr.and(bnc, bmgr.implication(context.execution(f), lastCoVar(f)));
+        }
 
-        return new TrackableFormula(null, null);
+        bnc = bmgr.not(bnc);
+
+        return new TrackableFormula(bmgr.not(MEMORY_SPEC.getSMTVariable(context)), bnc);
     }
 }

@@ -67,7 +67,7 @@ public class StdProcedures {
             return;
         }
         if (name.startsWith("free")) {
-            //free(visitor, ctx);
+            free(visitor, ctx);
             return;
         }
         if (name.startsWith("memcpy") | name.startsWith("$memcpy")) {

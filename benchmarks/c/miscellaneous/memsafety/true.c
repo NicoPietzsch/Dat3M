@@ -7,6 +7,11 @@
 
 int* shared;
 
+void *thread_n(void* arg)
+{
+    *shared = 42;
+}
+
 int main()
 {
     shared = malloc(sizeof(int));
@@ -21,9 +26,4 @@ int main()
         pthread_join(t[i], 0);
 
     return 0;
-}
-
-void *thread_n(void* arg)
-{
-    *shared = 42;
 }

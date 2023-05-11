@@ -103,7 +103,7 @@ public class PropertyEncoder implements Encoder {
 
         BooleanFormula encoding = (specType == Property.Type.SAFETY) ?
                 encodePropertyViolations(properties) : encodePropertyWitnesses(properties);
-        if (program.getFormat().equals(LITMUS) || properties.contains(LIVENESS)/*|| properties.contains(MEMORY_SPEC)*/) {
+        if (program.getFormat().equals(LITMUS) || properties.contains(LIVENESS)|| properties.contains(MEMORY_SPEC)) {
             // Both litmus assertions and liveness need to identify
             // the final stores to addresses.
             // TODO Optimization: This encoding can be restricted to only those addresses
@@ -503,13 +503,25 @@ public class PropertyEncoder implements Encoder {
         final EncodingContext context = PropertyEncoder.this.context;
         final BooleanFormulaManager bmgr = context.getBooleanFormulaManager();
         Relation co = memoryModel.getRelation(RelationNameRepository.CO);
-        List<Free> list = program.getEvents(Free.class);
+
+        List<Free> freeList = program.getEvents(Free.class);
         BooleanFormula bnc = bmgr.makeTrue();
-        for(Free f : list) {
+        for (Free f : freeList) {
             bnc = bmgr.and(bnc, bmgr.implication(context.execution(f), lastCoVar(f)));
         }
 
-        bnc = bmgr.not(bnc);
+        /*List<Load> loadList = program.getEvents(Load.class);
+        for (Load l : loadList) {
+            for (Free f : freeList) {
+                if (l.getAddress().equals(f.getAddress())) {
+                    bnc = bmgr.and(bnc, bmgr.not(context.edge(co, f, l)));
+                }
+            }
+        }*/
+
+        //bnc = bmgr.not(bnc);
+
+        bnc = bmgr.makeFalse();
 
         return new TrackableFormula(bmgr.not(MEMORY_SPEC.getSMTVariable(context)), bnc);
     }

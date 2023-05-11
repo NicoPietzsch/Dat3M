@@ -514,7 +514,7 @@ public class PropertyEncoder implements Encoder {
         for (Load l : loadList) {
             for (Free f : freeList) {
                 if (l.getAddress().equals(f.getAddress())) {
-                    bnc = bmgr.and(bnc, bmgr.not(context.edge(co, f, l)));
+                    bnc = bmgr.and(bnc, bmgr.implication(context.execution(f), bmgr.not(context.edge(co, f, l))));
                 }
             }
         }

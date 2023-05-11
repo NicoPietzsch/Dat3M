@@ -7,4 +7,6 @@ int main()
     free(a);
     
     int b = *a + 5;
+
+    return b;
 }

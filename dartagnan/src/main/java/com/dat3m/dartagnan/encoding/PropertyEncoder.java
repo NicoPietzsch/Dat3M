@@ -103,7 +103,7 @@ public class PropertyEncoder implements Encoder {
 
         BooleanFormula encoding = (specType == Property.Type.SAFETY) ?
                 encodePropertyViolations(properties) : encodePropertyWitnesses(properties);
-        if (program.getFormat().equals(LITMUS) || properties.contains(LIVENESS)) {
+        if (program.getFormat().equals(LITMUS) || properties.contains(LIVENESS) || properties.contains(MEMORY_SPEC)) {
             // Both litmus assertions and liveness need to identify
             // the final stores to addresses.
             // TODO Optimization: This encoding can be restricted to only those addresses

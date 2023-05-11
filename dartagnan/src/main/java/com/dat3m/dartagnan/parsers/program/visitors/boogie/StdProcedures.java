@@ -121,7 +121,7 @@ public class StdProcedures {
     private static void free(VisitorBoogie visitor, Call_cmdContext ctx) {
         final IExpr address = ((IExpr) ctx.call_params().exprs().expr(0).accept(visitor));
 
-        visitor.programBuilder.addChild(visitor.threadCount, EventFactory.newFree(address));
+        visitor.programBuilder.addChild(visitor.threadCount, EventFactory.newFree(address)).setCFileInformation(visitor.currentLine, visitor.sourceCodeFile);
     }
 
     private static void __assert(VisitorBoogie visitor, Call_cmdContext ctx) {

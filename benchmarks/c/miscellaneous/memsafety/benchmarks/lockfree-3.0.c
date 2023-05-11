@@ -93,12 +93,23 @@ void pop()
 
 int main()
 {
-    while (S || 1 != pc1 || 1 != pc4 || __VERIFIER_nondet_int()) {
+    /*while (S || 1 != pc1 || 1 != pc4 || __VERIFIER_nondet_int()) {
         if (__VERIFIER_nondet_int())
             push();
         else
             pop();
-    }
+    }*/
+    push();
+    push();
+    push();
+    push();
+    push();
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+    
 
     while (garbage) {
         struct cell *next = garbage->next;

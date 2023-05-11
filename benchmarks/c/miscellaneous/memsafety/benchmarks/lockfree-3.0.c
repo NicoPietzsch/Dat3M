@@ -109,12 +109,12 @@ int main()
     pop();
     pop();
     pop();
-    
+
 
     while (garbage) {
         struct cell *next = garbage->next;
-        assert(0);
         free(garbage);
+        //assert(0);
         garbage = next;
     }
 

@@ -4,5 +4,5 @@ int main()
 {
     int *a = malloc(sizeof(int));
     free(a);
-    free(a);
+    *a = 42;
 }

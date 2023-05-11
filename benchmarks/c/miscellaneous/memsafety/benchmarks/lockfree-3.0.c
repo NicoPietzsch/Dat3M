@@ -102,6 +102,7 @@ int main()
 
     while (garbage) {
         struct cell *next = garbage->next;
+        assert(0);
         free(garbage);
         garbage = next;
     }

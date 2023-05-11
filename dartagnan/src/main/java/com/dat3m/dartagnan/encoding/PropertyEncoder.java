@@ -519,9 +519,7 @@ public class PropertyEncoder implements Encoder {
             }
         }*/
 
-        //bnc = bmgr.not(bnc);
-
-        bnc = bmgr.makeTrue();
+        bnc = bmgr.not(bnc);
 
         return new TrackableFormula(bmgr.not(MEMORY_SPEC.getSMTVariable(context)), bnc);
     }

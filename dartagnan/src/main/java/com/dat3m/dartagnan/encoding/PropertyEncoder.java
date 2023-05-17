@@ -512,11 +512,18 @@ public class PropertyEncoder implements Encoder {
 
         Relation rm = memoryModel.getRelation(RelationNameRepository.RF);
         List<Load> loadList = program.getEvents(Load.class);
-        //AliasAnalysis aa = context.getAnalysisContext().requires(AliasAnalysis.class);
-            //aa.mayAlias(f, l)
         for (Load l : loadList) {
             for (Free f : freeList) {
                 bnc = bmgr.and(bnc, bmgr.implication(context.execution(f), bmgr.not(context.edge(rm, f, l))));
+            }
+        }
+
+        AliasAnalysis aa = context.getAnalysisContext().requires(AliasAnalysis.class);
+        for (Free f1 : freeList) {
+            for (Free f2 : freeList) {
+                if(aa.mayAlias(f1, f2)) {
+                    System.out.println(f1.toString() + ":" + f2.toString());
+                }
             }
         }
 

@@ -518,11 +518,13 @@ public class PropertyEncoder implements Encoder {
             }
         }
 
+        //test code to see, which operations are considered aliases
+        List<MemEvent> memEventList = program.getEvents(MemEvent.class);
         AliasAnalysis aa = context.getAnalysisContext().requires(AliasAnalysis.class);
-        for (Free f1 : freeList) {
-            for (Free f2 : freeList) {
-                if(aa.mayAlias(f1, f2)) {
-                    System.out.println(f1.toString() + ":" + f2.toString());
+        for (MemEvent m1 : memEventList) {
+            for (MemEvent m2 : memEventList) {
+                if(aa.mayAlias(m1, m2)) {
+                    System.out.println(m1.toString() + ":" + m2.toString());
                 }
             }
         }

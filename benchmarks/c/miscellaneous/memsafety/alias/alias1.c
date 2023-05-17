@@ -8,5 +8,5 @@ int main(int argc, char **argv)
     q = p + offset;
     free(p);
     p = NULL;
-    *q = 42;    //use-after-free throug alias
+    *q = 42;    //use-after-free through alias
 }

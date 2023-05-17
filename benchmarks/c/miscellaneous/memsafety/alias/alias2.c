@@ -8,5 +8,5 @@ int main()
     q = p + offset;
     free(p);
     p = NULL;
-    *q = 42;    //use-after-free through alias
+    *q = 42;    //this is an error, but not a use-after-free
 }

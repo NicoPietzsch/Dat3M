@@ -1,10 +1,12 @@
 #include <stdlib.h>
-#include <stdio.h>
+#include <pthread.h>
 
 typedef struct item {
     int value;
     struct item *next;
 } item_t;
+
+item_t *stack;
 
 void push(item_t **stack, int value) {
     item_t *new_tos = malloc(sizeof(item_t));
@@ -30,12 +32,18 @@ int pop(item_t **stack) {
     return value;
 }
 
+void *thread_pop(void* arg)
+{
+    pop(&stack);
+    return NULL;
+}
+
 int main(int argc, char **argv) {
-    item_t *stack;
     push(&stack, 42);
     push(&stack, 12);
-    printf("%d\n", pop(&stack));
-    push(&stack, 74);
-    printf("%d\n", pop(&stack));
-    printf("%d\n", pop(&stack));
+    
+    pthread_t t1, t2;
+    pthread_create(&t1, NULL, thread_pop, NULL);
+    pthread_create(&t2, NULL, thread_pop, NULL);
+    return 0;
 }

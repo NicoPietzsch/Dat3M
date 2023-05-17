@@ -519,7 +519,7 @@ public class PropertyEncoder implements Encoder {
         }
 
         //test code to see, which operations are considered aliases
-        List<MemEvent> memEventList = program.getEvents(MemEvent.class);
+        /*List<MemEvent> memEventList = program.getEvents(MemEvent.class);
         AliasAnalysis aa = context.getAnalysisContext().requires(AliasAnalysis.class);
         for (MemEvent m1 : memEventList) {
             for (MemEvent m2 : memEventList) {
@@ -527,7 +527,7 @@ public class PropertyEncoder implements Encoder {
                     System.out.println(m1.toString() + ":" + m2.toString());
                 }
             }
-        }
+        }*/
 
         bnc = bmgr.not(bnc);
 

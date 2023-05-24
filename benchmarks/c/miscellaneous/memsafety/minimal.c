@@ -18,8 +18,4 @@ int main() {
     pthread_t t1, t2;
     pthread_create(&t1, NULL, t1_task, NULL);
     pthread_create(&t2, NULL, t2_task, NULL);
-    pthread_join(t1, NULL);
-    pthread_join(t2, NULL);
-    int temp = *shared;
-    printf("%d\n", temp);
 }
